@@ -55,7 +55,7 @@ services:
       typetype-downloader:
         condition: service_started
     healthcheck:
-      test: ["CMD-SHELL", "wget -q -O /dev/null http://127.0.0.1/8080/health"]
+      test: ["CMD-SHELL", "wget -q -O /dev/null http://127.0.0.1:8080/health"]
     restart: unless-stopped
 
   typetype-downloader:
@@ -140,7 +140,6 @@ services:
       PGPASSWORD: ${POSTGRES_PASSWORD:-typetype}
       YOUTUBE_REMOTE_LOGIN_INTERNAL_TOKEN: ${YOUTUBE_REMOTE_LOGIN_INTERNAL_TOKEN:-}
       YOUTUBE_SESSION_ENCRYPTION_KEY: ${YOUTUBE_SESSION_ENCRYPTION_KEY:-}
-      BILIBILI_SESSION_ENCRYPTION_KEY: ${BILIBILI_SESSION_ENCRYPTION_KEY:-}
     command: ["/bin/sh", "/usr/local/bin/initialize-stack.sh"]
     volumes:
       - typetype_secrets:/run/typetype-secrets
